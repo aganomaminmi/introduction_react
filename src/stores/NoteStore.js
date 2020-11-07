@@ -11,11 +11,11 @@ const initData = {
 export function noteReducer(state = initData, action) {
     switch (action.type) {
         case 'ADD' :
-            return;
+            return addReduce(state, action);
         case 'DELETE':
-            return;
+            return deleteReduce(state, action);
         case 'FIND' :
-            return;
+            return findReduce(state, action);
         default :
             return;
     }
@@ -70,4 +70,30 @@ function deleteReduce(state, action) {
     }
 }
 
-export default createStore();
+// アクションクリエーター
+
+// メモ追加アクション
+export function addNote(text) {
+    return {
+        type: 'ADD',
+        message: text
+    }
+}
+
+// メモ削除アクション
+export function deleteNote(num) {
+    return {
+        type: 'DELETE',
+        index: num
+    }
+}
+
+// メモ検索アクション
+export function findNote(text) {
+    return {
+        type: 'FIND',
+        find: text
+    }
+}
+
+export default createStore(noteReducer);
