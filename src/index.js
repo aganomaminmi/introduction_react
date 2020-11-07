@@ -12,7 +12,7 @@ let state_value = {
     message: "COUNTER"
 };
 
-// レデューサーredexyu-sa-
+// レデューサー
 function counter(state = state_value, action) {
     switch (action.type) {
         case 'INCREMENT':
