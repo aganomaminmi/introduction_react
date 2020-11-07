@@ -4,7 +4,7 @@ const initData = {
     data: [{message: 'sample data', created: new Date()}],
     message: 'please type message:',
     mode: 'default',
-    fdata: []
+    foundData: []
 };
 
 // レデューサー
@@ -35,8 +35,27 @@ function addReduce(state, action) {
         data: newData,
         message: 'Added!',
         mode: 'default',
-        fdata: []
+        foundData: []
     };
+}
+
+// メモ検索レデュース
+function findReduce(state, action) {
+    let find = action.find;
+    let foundData = [];
+    state.data.forEach( value => {
+        if (value.message.indexof(find) >= 0) {
+            foundData.push(value);
+        }
+    });
+
+    return {
+        data: state.data,
+        message: 'find "' + find + '":',
+        mode: 'find',
+        foundData: foundData
+    }
+
 }
 
 export default createStore();
