@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+import AddForm from "./components/AddForm";
+import FindForm from "./components/FindForm";
+import DelForm from "./components/DelForm";
+import Note from "./components/Note";
 
 function mappingState(state) {
     return state;
 }
 
 class App extends Component {
+    td = {
+        width: "250px"
+    }
 
     constructor(props) {
         super(props);
@@ -15,15 +22,26 @@ class App extends Component {
     render() {
         return (
             <div>
-                <h1>Redux</h1>
-                <Message maxlength="10" onCheck={this.doCheck} />
-                <Button />
+                <h1>Note</h1>
+                <AddForm />
+                <hr />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style={this.td}><FindForm /></td>
+                            <td style={this.td}><DelForm /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <Note />
             </div>
         );
     }
 }
 
-App = connect() (App);
+
+export default connect()(App);
+
 
 class Message extends Component {
     style = {
@@ -72,4 +90,3 @@ class Button extends Component {
 
 Button = connect() (Button);
 
-export default App;

@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, CombineReducers } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'
+import NoteStore from './stores/NoteStore'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 
 // ステートの値
 let state_value = {
@@ -34,7 +36,7 @@ let store = createStore(counter);
 
 ReactDOM.render(
   <React.StrictMode>
-      <Provider store={store}>
+      <Provider store={NoteStore}>
           <App msg="Hello App." />
       </Provider>
   </React.StrictMode>,
