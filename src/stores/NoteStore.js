@@ -58,4 +58,16 @@ function findReduce(state, action) {
 
 }
 
+// メモ削除
+function deleteReduce(state, action) {
+    let newData = state.data.slice();
+    newData.splice(action.index, 1)
+    return {
+        data: newData,
+        message: 'delete "' + action.index + '":',
+        mode: 'delete',
+        foundData: [],
+    }
+}
+
 export default createStore();
