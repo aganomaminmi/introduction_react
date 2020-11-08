@@ -28,8 +28,12 @@ class Item extends Component {
     }
 
     render() {
-        let at = this.props.value.created;
-        let time = at.getHours() + ':' + at.getMinutes() + ':' + at.getSeconds();
+        let at = new Date(this.props.value.created);
+        let time = at.getMonth() + '/' +
+            at.getDate() + ' ' +
+            at.getHours() + ':' +
+            at.getMinutes() + ':' +
+            at.getSeconds();
         return (
             <tr>
                 <th style={this.th}>No, {this.props.index}</th>

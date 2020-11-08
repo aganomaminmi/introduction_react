@@ -1,16 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from "redux";
 import { Provider } from 'react-redux'
-import NoteStore from "./stores/Store";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+import NoteStore, { noteReducer } from "./stores/Store";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const persistConfig = {
+    key: 'note',
+    blackList: ['foundData', 'mode', 'message'],
+    whitelist: ['data'],
+    storage
+}
+
+let persistedReducer = persistReducer(persistConfig, noteReducer)
+let store = createStore(persistedReducer);
+let persistedStore = persistStore(store);
+
 
 ReactDOM.render(
   <React.StrictMode>
-      <Provider store={NoteStore}>
-          <App msg="Hello App." />
+      <Provider store={store}>
+          <PersistGate
+              loading={<p>loading...</p>}
+              persistor={persistedStore}
+          >
+              <App />
+          </PersistGate>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')
