@@ -1,10 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, CombineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { persistReducer, persistStore } from "redux-persist";
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from "redux-persist/integration/react";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+let persistConfig = {
+    key: 'root',
+    storage
+}
 
 // ステートの値
 let state_value = {
@@ -12,7 +20,7 @@ let state_value = {
     message: "COUNTER"
 };
 
-// レデューサーredexyu-sa-
+// レデューサー
 function counter(state = state_value, action) {
     switch (action.type) {
         case 'INCREMENT':
@@ -25,17 +33,29 @@ function counter(state = state_value, action) {
                 counter: state.counter - 1,
                 message: "DECREMENT"
             };
+        case 'RESET':
+            return {
+                counter: 0,
+                message: 'RESET'
+            }
         default:
             return state;
     }
 }
 
-let store = createStore(counter);
+let persistedReducer = persistReducer(persistConfig, counter);
+let store = createStore(persistedReducer);
+let persistedStore = persistStore(store);
 
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
-          <App msg="Hello App." />
+          <PersistGate
+              loading={<p>loading...</p>}
+              persistor={persistedStore}
+          >
+              <App />
+          </PersistGate>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')
