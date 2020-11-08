@@ -19,7 +19,7 @@ const persistConfig = {
 
 let persistedReducer = persistReducer(persistConfig, noteReducer)
 let store = createStore(persistedReducer);
-let persistedStore = persistStore(store);
+export let persistedStore = persistStore(store);
 
 
 ReactDOM.render(
