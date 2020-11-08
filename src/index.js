@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import NoteStore, { noteReducer } from "./stores/Store";
+import NoteStore from "./stores/Store";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createStore} from "redux";
 
 
 ReactDOM.render(
