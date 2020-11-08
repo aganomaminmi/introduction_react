@@ -44,7 +44,7 @@ function findReduce(state, action) {
     let find = action.find;
     let foundData = [];
     state.data.forEach( value => {
-        if (value.message.indexof(find) >= 0) {
+        if (value.message.indexOf(find) >= 0) {
             foundData.push(value);
         }
     });
