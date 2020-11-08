@@ -3,7 +3,9 @@ import { Component } from "react";
 class FindForm extends Component {
 
     render() {
-        return;
+        return (
+            <div></div>
+        );
     }
 }
 

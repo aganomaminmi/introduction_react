@@ -14,7 +14,7 @@ class Item extends Component {
         backgroundColor: "white",
         color: "darkblue",
         padding: "5px 10px",
-        border: "1px slid lightblue",
+        border: "1px solid lightblue",
         minWidth: "300px"
     }
 
@@ -23,7 +23,7 @@ class Item extends Component {
         backgroundColor: "white",
         color: "darkblue",
         padding: "5px 10px",
-        border: "1px slid lightblue",
+        border: "1px solid lightblue",
         minWidth: "80px"
     }
 

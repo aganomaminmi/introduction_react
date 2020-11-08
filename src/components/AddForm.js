@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import {addNote} from "../stores/NoteStore";
+import { connect } from "react-redux";
+import {addNote} from "../stores/Store";
 
 class AddForm extends Component{
     input = {
@@ -12,6 +13,11 @@ class AddForm extends Component{
         fontSize: "16pt",
         color: "#006",
         padding: "2px 10px",
+    }
+    message = {
+        fontSize: "16pt",
+        color: "#006",
+        margin: "5px 10px"
     }
 
     constructor(props) {
@@ -39,8 +45,23 @@ class AddForm extends Component{
     }
 
     render() {
-        return;
+        return (
+            <div>
+                <p style={this.message}>{this.props.message}</p>
+                <form onSubmit={this.doAction}>
+                    <input
+                        type="text"
+                        size="40"
+                        onChange={this.doChange}
+                        style={this.input}
+                        value={this.state.message}
+                        required
+                    />
+                    <input type="submit" style={this.btn} value="Add" />
+                </form>
+            </div>
+        );
     }
 }
 
-export default AddForm;
+export default connect( state => state )(AddForm);

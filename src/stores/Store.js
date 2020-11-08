@@ -17,7 +17,7 @@ export function noteReducer(state = initData, action) {
         case 'FIND' :
             return findReduce(state, action);
         default :
-            return;
+            return state;
     }
 }
 

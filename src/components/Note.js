@@ -1,5 +1,6 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import Item from './Item.js'
 
 class Note extends Component {
