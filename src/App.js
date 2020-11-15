@@ -1,36 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import AddForm from "./components/AddForm";
-import FindForm from "./components/FindForm";
-import DelForm from "./components/DelForm";
-import Note from "./components/Note";
+import Sampledata from './fire/SampleData';
+import firebase from 'firebase';
 
+const config = {
+    apiKey: "AIzaSyCVnxxVmdzeq5ghb3n5BQchPHT3jz6vYJ8",
+    authDomain: "takanami-react-app.firebaseapp.com",
+    databaseURL: "https://takanami-react-app.firebaseio.com",
+    projectId: "takanami-react-app",
+    storageBucket: "takanami-react-app.appspot.com",
+    messagingSenderId: "911520889118",
+    appId: "1:911520889118:web:a52b2d9b033669de28310f",
+    measurementId: "G-T2VFB0PTTY"
+}
+
+firebase.initializeApp(config)
 
 class App extends Component {
     td = {
         width: "250px"
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>
-                <h1>Note</h1>
-                <AddForm />
-                <hr />
-                <table>
-                    <tbody>
-                        <tr>
-                            <td style={this.td}><FindForm /></td>
-                            <td style={this.td}><DelForm /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <Note />
+                <h1>Fire</h1>
+                <h2>Sample data.</h2>
+                <Sampledata />
             </div>
         );
     }
